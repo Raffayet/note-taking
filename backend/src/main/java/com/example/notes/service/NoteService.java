@@ -5,6 +5,7 @@ import com.example.notes.model.Note;
 import com.example.notes.repository.NoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -33,9 +34,13 @@ public class NoteService {
         }
     }
 
-    public Page<Note> getAllNotes(Pageable paging) {
-        Page<Note> notes = noteRepository.findAll(paging);
-        return notes;
+    public Page<Note> getNotes(String search, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        // If user didn't search anything return the all notes immediately
+        if (search == null || search.isEmpty()) {
+            return noteRepository.findAll(pageable);
+        }
+        return noteRepository.findByTitleContainingIgnoreCaseOrContentContainingIgnoreCase(search, search, pageable);
     }
 
     public Note getNoteById(String id) {

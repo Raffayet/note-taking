@@ -1,5 +1,5 @@
 <div class="notes-container">
-  <ng-container>
+  <ng-container class="search-container">
     <button
       class="add-button"
       mat-raised-button
@@ -8,6 +8,15 @@
     >
       Add new note
     </button>
+    <mat-form-field>
+      <input
+        class="search-input"
+        matInput
+        type="text"
+        placeholder="Search ..."
+        (input)="onSearchInput($event)"
+      />
+    </mat-form-field>
   </ng-container>
   <mat-table [dataSource]="notes" class="mat-elevation-z8">
     <ng-container matColumnDef="title">

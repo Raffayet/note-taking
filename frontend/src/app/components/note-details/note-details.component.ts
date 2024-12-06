@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Inject } from '@angular/core';
 import {
@@ -13,6 +14,7 @@ import {
   MatDialogRef,
 } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { ToastrService } from 'ngx-toastr';
 import { NoteService } from '../../services/note.service';
 
@@ -20,10 +22,12 @@ import { NoteService } from '../../services/note.service';
   selector: 'app-note-details',
   standalone: true,
   imports: [
+    CommonModule,
     ReactiveFormsModule,
     MatDialogModule,
     MatButtonModule,
     MatFormFieldModule,
+    MatInputModule,
   ],
   templateUrl: './note-details.component.html',
   styleUrl: './note-details.component.css',

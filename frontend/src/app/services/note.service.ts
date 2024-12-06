@@ -13,11 +13,15 @@ export class NoteService {
 
   constructor(private http: HttpClient) {}
 
-  getNotes(pageRequest: PageRequest): Observable<Note[]> {
+  getNotes(pageRequest: PageRequest, search?: string): Observable<Note[]> {
     let queryParams = new HttpParams()
       .append('format', 'json')
       .append('page', pageRequest.page.toString())
       .append('size', pageRequest.size.toString());
+
+    if (search) {
+      queryParams = queryParams.append('search', search);
+    }
 
     return this.http.get<Note[]>(this.apiUrl, { params: queryParams });
   }

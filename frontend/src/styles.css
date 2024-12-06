@@ -5,6 +5,18 @@ body {
   font-family: "Quicksand", sans-serif;
 }
 
+.toast-success {
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  position: fixed;
+  z-index: 1050;
+  background-color: #48bd2a !important;
+  color: white !important;
+  padding: 10px 15px !important;
+  font-weight: 600;
+}
+
 .toast-error {
   bottom: 10%;
   left: 50%;
@@ -21,5 +33,11 @@ body {
   display: none !important; /* Ensure the close button is hidden */
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

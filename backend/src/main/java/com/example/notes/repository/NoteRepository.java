@@ -9,4 +9,11 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface NoteRepository extends MongoRepository<Note, String> {
     Page<Note> findAll(Pageable pageable);
+
+    // User can search by title and content - implementing some 'soft search' here
+    Page<Note> findByTitleContainingIgnoreCaseOrContentContainingIgnoreCase(
+        String title,
+        String content,
+        Pageable pageable
+    );
 }

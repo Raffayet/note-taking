@@ -19,13 +19,14 @@ public class NoteController {
     NoteService noteService;
 
     @GetMapping
-    public Page<Note> getAllNotes(
+    public ResponseEntity<Page<Note>> getNotes(
+        @RequestParam(value = "search", required = false) String search,
         @RequestParam(defaultValue = "0") int page,
         @RequestParam(defaultValue = "10") int size
     ) {
         // Implementing pagination here
-        Pageable paging = PageRequest.of(page, size);
-        return noteService.getAllNotes(paging);
+        Page<Note> notes = noteService.getNotes(search, page, size);
+        return ResponseEntity.ok(notes);
     }
 
     @GetMapping("/{id}")

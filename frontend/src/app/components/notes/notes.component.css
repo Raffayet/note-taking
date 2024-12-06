@@ -40,8 +40,11 @@ tr:hover {
 }
 
 .add-button {
+  height: 50px;
+  padding: 20px;
   background-color: #58d983 !important;
   margin: 10px;
+  margin-right: 120px;
 }
 
 button {
