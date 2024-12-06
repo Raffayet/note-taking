@@ -8,6 +8,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import {
   BrowserModule,
@@ -36,7 +37,8 @@ export const appConfig: ApplicationConfig = {
       MatIconModule,
       MatDialogModule,
       MatFormFieldModule,
-      MatInputModule
+      MatInputModule,
+      MatPaginatorModule
     ),
   ],
 };

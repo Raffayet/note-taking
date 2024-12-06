@@ -8,6 +8,7 @@ import {
 } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
@@ -27,6 +28,7 @@ import { NoteDetailsComponent } from '../note-details/note-details.component';
     MatButtonModule,
     MatDialogActions,
     MatInputModule,
+    MatPaginatorModule,
   ],
   templateUrl: './notes.component.html',
   styleUrls: ['./notes.component.css'],
@@ -36,6 +38,11 @@ export class NotesComponent implements OnInit {
   displayedColumns: string[] = ['title', 'content', 'actions'];
   searchQuery: string = '';
   searchSubject: Subject<string> = new Subject<string>();
+
+  // Pagination properties
+  totalLength = 0;
+  pageSize = 10;
+  currentPage = 0;
 
   constructor(
     private notesService: NoteService,
@@ -57,10 +64,12 @@ export class NotesComponent implements OnInit {
     this.notesService.getNotes(pageRequest, search).subscribe({
       next: (data) => {
         this.notes = data['content'] || [];
+        this.totalLength = data['totalElements'] || 0; // Update total count for paginator
       },
       error: (err) => {
         console.error('Failed to fetch notes:', err);
         this.notes = [];
+        this.totalLength = 0; // Reset total count on error
       },
     });
   }
@@ -85,12 +94,10 @@ export class NotesComponent implements OnInit {
       });
   }
 
-  viewNote(id: string): void {
-    this.router.navigate(['/notes', id]);
-  }
-
-  editNote(id: string): void {
-    this.router.navigate(['/notes/edit', id]);
+  onPageChange(event: PageEvent): void {
+    this.currentPage = event.pageIndex;
+    this.pageSize = event.pageSize;
+    this.fetchNotes({ page: this.currentPage, size: this.pageSize });
   }
 
   deleteNote(note: Note): void {
