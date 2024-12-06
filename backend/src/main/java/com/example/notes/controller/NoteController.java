@@ -3,6 +3,9 @@ package com.example.notes.controller;
 import com.example.notes.model.Note;
 import com.example.notes.service.NoteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,8 +19,10 @@ public class NoteController {
     NoteService noteService;
 
     @GetMapping
-    public ResponseEntity<List<Note>> getAllNotes() {
-        return ResponseEntity.ok(noteService.getAllNotes());
+    public Page<Note> getAllNotes(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
+        // Implementing pagination here
+        Pageable paging = PageRequest.of(page, size);
+        return noteService.getAllNotes(paging);
     }
 
     @GetMapping("/{id}")

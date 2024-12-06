@@ -1,0 +1,22 @@
+<div class="notes-container">
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Content</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let note of notes">
+        <td>{{ note.title }}</td>
+        <td>{{ note.content | slice : 0 : 100 }}...</td>
+        <td>
+          <button (click)="viewNote(note.id)">View</button>
+          <button (click)="editNote(note.id)">Edit</button>
+          <button (click)="deleteNote(note.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

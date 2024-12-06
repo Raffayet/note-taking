@@ -4,6 +4,8 @@ import com.example.notes.exception.NotFoundException;
 import com.example.notes.model.Note;
 import com.example.notes.repository.NoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,8 +21,9 @@ public class NoteService {
         return noteRepository.save(note);
     }
 
-    public List<Note> getAllNotes() {
-        return noteRepository.findAll();
+    public Page<Note> getAllNotes(Pageable paging) {
+        Page<Note> notes = noteRepository.findAll(paging);
+        return notes;
     }
 
     public Note getNoteById(String id) {

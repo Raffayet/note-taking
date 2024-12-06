@@ -47,19 +47,19 @@ export class LoginComponent {
     localStorage.clear();
     this.submitted = true;
 
-    this.loginService.logIn(this.loginForm, this.success).subscribe({
-      next: (res: { accessToken: any }) => {
-        let token = res.accessToken;
-        localStorage.setItem('user', token);
-        this.success = true;
+    const { email, password } = this.loginForm.value;
 
-        this.toastService.success('Successfully logged in!');
+    this.loginService.logIn(email, password, this.success).subscribe({
+      next: (res) => {
+        console.log('success');
+        this.success = true;
+        this.router.navigate(['/notes']);
       },
       error: (err: string) => {
+        this.toastService.error('Wrong credentials');
+        console.log('failure');
         if (err === 'OK') {
-          this.toastService.warning('Credentials are poorly formatted!');
-        } else {
-          this.toastService.warning(err);
+          console.log('Credentials are poorly formatted!');
         }
         this.success = false;
       },

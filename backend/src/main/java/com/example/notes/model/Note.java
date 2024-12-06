@@ -26,4 +26,12 @@ public class Note {
 
     @LastModifiedDate
     private Instant updatedAt;
+
+    // Constructor used when creating initial notes during application startup
+    public Note(String title, String content) {
+        this.title = title;
+        this.content = content;
+        this.createdAt = Instant.now();
+        this.updatedAt = Instant.now();
+    }
 }

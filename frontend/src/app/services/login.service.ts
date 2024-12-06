@@ -1,17 +1,27 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
+import { LoginDto } from '../model/loginDto';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginService {
-  private apiUrl = 'http://localhost:8080/api/login';
+  private apiUrl = `${environment.apiBaseUrl}/login`;
 
   constructor(private http: HttpClient) {}
 
-  logIn(credentials: FormGroup, success: boolean): Observable<any> {
+  logIn(email: string, password: string, success: boolean): Observable<any> {
+    let credentials: LoginDto = { email: email, password: password };
     return this.http.post(this.apiUrl, credentials);
+  }
+
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem('user');
+  }
+
+  logout(): void {
+    localStorage.removeItem('user');
   }
 }
