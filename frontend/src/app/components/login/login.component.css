@@ -22,90 +22,34 @@
   height: 100%;
 }
 
-.login-window .login-container #float-input {
-  padding: 12px;
-  height: 60px !important;
-  margin-bottom: 20px;
-  font-size: 16px;
-  background-color: rgb(243, 241, 241);
-  border: 0;
-}
-
-.login-window .login-container #float-input:focus {
-  outline: 3px solid rgb(192, 215, 255);
-}
-
-.login-window .login-container .password-field {
-  padding: 12px;
-  height: 60px !important;
-  margin-bottom: 40px;
-  border-radius: 0 !important;
-  background-color: rgb(243, 241, 241);
-  border: 0;
-}
-
-.login-window .login-container .username-label {
-  margin-top: 40px;
-  margin-bottom: 10px;
-  text-align: left;
-  color: black;
-  font-size: 20px;
-  font-weight: 600;
-}
-
-.login-window .login-container .password-label {
-  margin-top: 20px;
-  margin-bottom: 10px;
-  text-align: left;
-  color: black;
-  font-size: 20px;
-  font-weight: 600;
-}
-
-.login-window .login-container .button-container .login-button {
-  margin-bottom: 160px;
-  background-color: black;
-  color: white;
-  font-weight: 800;
-  font-size: 20px;
-  width: 70%;
-  height: 40px;
-  cursor: pointer;
-  border-radius: 5px;
-  min-height: 45px;
-}
-
-.login-window .login-container .button-container .login-button:disabled {
-  background-color: rgb(104, 104, 104);
-  cursor: default;
-}
-
 .login {
   margin-top: 40px;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
   padding-bottom: 0px;
   font-size: 50px;
   font-weight: 700;
 }
 
-.link-container-register {
-  margin-top: 70px;
+.login-button {
+  padding: 12px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 30px;
+  background: linear-gradient(45deg, #4caf50, #81c784);
+  color: white;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
-.login-window .login-container .password-field-error {
-  border: 1px solid red;
-  padding: 12px;
-  height: 60px !important;
-  margin-bottom: 40px;
-  border-radius: 0 !important;
-  background-color: rgb(243, 241, 241);
+.login-button:hover {
+  background: linear-gradient(45deg, #66bb6a, #a5d6a7);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
-.login-window .login-container #float-input-error {
-  border: 1px solid red;
-  padding: 12px;
-  height: 60px !important;
-  margin-bottom: 20px;
-  font-size: 16px;
-  background-color: rgb(243, 241, 241);
+.login-button:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
