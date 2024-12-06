@@ -53,6 +53,7 @@ public class SecurityConfig {
 
     @Bean
     public UserDetailsService userDetailsService() {
+        // Created one hard-coded user here
         UserDetails user = User.builder()
                 .username("user@example.com")
                 .password(passwordEncoder().encode("user123"))

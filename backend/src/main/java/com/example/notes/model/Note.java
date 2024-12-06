@@ -31,6 +31,10 @@ public class Note {
         this.updatedAt = Instant.now();
     }
 
+    public Note() {
+
+    }
+
     // Getters
 
     public String getId() {

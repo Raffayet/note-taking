@@ -36,6 +36,7 @@ public class LoginController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
         }
 
+        // If credentials are valid it reaches this phase where jwt token is generated
         String token = jwtTokenGenerator.generateToken(loginDto.email);
         return ResponseEntity.ok(Collections.singletonMap("token", token));
     }

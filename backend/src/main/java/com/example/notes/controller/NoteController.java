@@ -24,7 +24,6 @@ public class NoteController {
         @RequestParam(defaultValue = "0") int page,
         @RequestParam(defaultValue = "10") int size
     ) {
-        // Implementing pagination here
         Page<Note> notes = noteService.getNotes(search, page, size);
         return ResponseEntity.ok(notes);
     }

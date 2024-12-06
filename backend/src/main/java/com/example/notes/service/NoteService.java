@@ -25,6 +25,7 @@ public class NoteService {
 
     public void updateNote(String id, Note updatedNote) {
         Optional<Note> note = noteRepository.findById(id);
+        // Only if we find the note by id, then we can continute with updating
         if(note.isPresent()) {
             Note presentNote = note.get();
             presentNote.setContent(updatedNote.getContent());
@@ -35,6 +36,7 @@ public class NoteService {
     }
 
     public Page<Note> getNotes(String search, int page, int size) {
+        // Implementing pagination here
         Pageable pageable = PageRequest.of(page, size);
         // If user didn't search anything return the all notes immediately
         if (search == null || search.isEmpty()) {
@@ -49,6 +51,10 @@ public class NoteService {
     }
 
     public void deleteNoteById(String id) {
+        if (!noteRepository.existsById(id)) {
+            throw new NotFoundException("Note with ID " + id + " does not exist");
+        }
         noteRepository.deleteById(id);
     }
+
 }
