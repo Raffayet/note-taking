@@ -14,13 +14,11 @@ public class CorsConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
 
-        // Allow requests from Angular app
         configuration.addAllowedOrigin("http://localhost:4200");
-        configuration.setAllowCredentials(true); // Enable cookies and credentials
-        configuration.addAllowedHeader("*"); // Allow all headers
-        configuration.addAllowedMethod("*"); // Allow all HTTP methods
+        configuration.setAllowCredentials(true);
+        configuration.addAllowedHeader("*");
+        configuration.addAllowedMethod("*");
 
-        // Apply the configuration to all endpoints
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
 

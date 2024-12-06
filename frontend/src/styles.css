@@ -20,3 +20,6 @@ body {
 .toast-close-button {
   display: none !important; /* Ensure the close button is hidden */
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

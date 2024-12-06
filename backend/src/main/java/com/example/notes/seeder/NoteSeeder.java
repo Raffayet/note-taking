@@ -28,9 +28,9 @@ public class NoteSeeder {
 
     public void createInitialNotes() {
         noteRepository.saveAll(Arrays.asList(
-                new Note("First Note", "This is the content of the first note."),
-                new Note("Second Note", "This is the content of the second note."),
-                new Note("Third Note", "This is the content of the third note.")
+                new Note("Meeting with John", "We need to discuss next phases of the product development. Testing is priority."),
+                new Note("Dentist appointment", "Surgeon needs to fix couple of teeth."),
+                new Note("Date with Mariah", "Mariah invited me to the restaurant near my location. I'm so excited to meet her!")
         ));
     }
 }

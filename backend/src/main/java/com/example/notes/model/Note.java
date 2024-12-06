@@ -1,7 +1,5 @@
 package com.example.notes.model;
 
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
@@ -11,11 +9,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.time.Instant;
 
 @Document(collection = "notes")
-@Getter
-@Setter
 public class Note {
     @Id
-    private ObjectId id;
+    private String id;
 
     private String title;
 
@@ -33,5 +29,49 @@ public class Note {
         this.content = content;
         this.createdAt = Instant.now();
         this.updatedAt = Instant.now();
+    }
+
+    // Getters
+
+    public String getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public Instant getCreatedAt() {
+        return createdAt;
+    }
+
+    public Instant getUpdatedAt() {
+        return updatedAt;
+    }
+
+    // Setters
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setCreatedAt(Instant createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public void setUpdatedAt(Instant updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }

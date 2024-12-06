@@ -25,7 +25,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         // We make a whitelist of endpoints for additional security (as we don't have much controllers)
                         .requestMatchers("/api/login").permitAll()
-                        .requestMatchers("/api/notes").permitAll()
+                        .requestMatchers("/api/notes/**").permitAll()
                         .anyRequest().authenticated()
                 );
 

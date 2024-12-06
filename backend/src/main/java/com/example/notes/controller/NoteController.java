@@ -19,7 +19,10 @@ public class NoteController {
     NoteService noteService;
 
     @GetMapping
-    public Page<Note> getAllNotes(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
+    public Page<Note> getAllNotes(
+        @RequestParam(defaultValue = "0") int page,
+        @RequestParam(defaultValue = "10") int size
+    ) {
         // Implementing pagination here
         Pageable paging = PageRequest.of(page, size);
         return noteService.getAllNotes(paging);

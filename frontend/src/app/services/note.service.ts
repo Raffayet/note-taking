@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Note } from '../model/note';
+import { PageRequest } from '../model/pageRequest';
 
 @Injectable({
   providedIn: 'root',
@@ -12,8 +13,20 @@ export class NoteService {
 
   constructor(private http: HttpClient) {}
 
-  getNotes(): Observable<Note[]> {
-    console.log(this.apiUrl);
-    return this.http.get<Note[]>(this.apiUrl);
+  getNotes(pageRequest: PageRequest): Observable<Note[]> {
+    let queryParams = new HttpParams()
+      .append('format', 'json')
+      .append('page', pageRequest.page.toString())
+      .append('size', pageRequest.size.toString());
+
+    return this.http.get<Note[]>(this.apiUrl, { params: queryParams });
   }
+
+  deleteNote(noteId: string) {
+    return this.http.delete(`${this.apiUrl}/${noteId}`);
+  }
+
+  // addNewNote(): Observable<any> {
+  //   return this.http.post<Note[]>(this.apiUrl, { params: queryParams });
+  // }
 }
