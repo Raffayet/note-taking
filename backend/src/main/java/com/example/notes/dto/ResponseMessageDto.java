@@ -6,9 +6,9 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 public class ResponseMessageDto {
-    private String message;
+    private String token;
 
-    public ResponseMessageDto(String message) {
-        this.message = message;
+    public ResponseMessageDto(String token) {
+        this.token = token;
     }
 }

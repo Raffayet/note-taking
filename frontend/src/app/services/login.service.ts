@@ -21,7 +21,15 @@ export class LoginService {
     return !!localStorage.getItem('user');
   }
 
+  saveToken(token: string): void {
+    localStorage.setItem('jwtToken', token);
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem('jwtToken');
+  }
+
   logout(): void {
-    localStorage.removeItem('user');
+    localStorage.removeItem('jwtToken');
   }
 }

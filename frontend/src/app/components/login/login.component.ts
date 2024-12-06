@@ -60,16 +60,15 @@ export class LoginComponent {
 
     this.loginService.logIn(email, password, this.success).subscribe({
       next: (res) => {
-        console.log('success');
-        this.success = true;
+        const token = res.token;
+        console.log(res);
+        // We make sure that jwt token is stored so the interceptor can grab it.
+        localStorage.setItem('jwtToken', token);
         this.router.navigate(['/notes']);
       },
-      error: (err: string) => {
+      error: (err) => {
+        console.log(err);
         this.toastService.error('Wrong credentials');
-        console.log('failure');
-        if (err === 'OK') {
-          console.log('Credentials are poorly formatted!');
-        }
         this.success = false;
       },
     });
