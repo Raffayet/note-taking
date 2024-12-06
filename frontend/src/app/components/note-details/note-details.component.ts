@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Inject } from '@angular/core';
 import {
   FormBuilder,
@@ -12,6 +13,8 @@ import {
   MatDialogRef,
 } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { ToastrService } from 'ngx-toastr';
+import { NoteService } from '../../services/note.service';
 
 @Component({
   selector: 'app-note-details',
@@ -30,8 +33,10 @@ export class NoteDetailsComponent {
   createDialog: boolean;
 
   constructor(
+    private toastrService: ToastrService,
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<NoteDetailsComponent>,
+    private noteService: NoteService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.noteForm = this.fb.group({
@@ -44,7 +49,31 @@ export class NoteDetailsComponent {
 
   onSubmit(): void {
     if (this.noteForm.valid) {
-      this.dialogRef.close(this.noteForm.value);
+      const noteData = this.noteForm.value;
+
+      if (this.createDialog) {
+        // POST request if the user is creating new note
+        this.noteService.createNote(noteData).subscribe({
+          next: (response) => {
+            this.toastrService.success('Note created successfully!');
+            this.dialogRef.close(response);
+          },
+          error: (error: HttpErrorResponse) => {
+            this.toastrService.error('Failed to create note!');
+          },
+        });
+      } else {
+        // PUT request if the user is updating the note
+        this.noteService.updateNote(this.data.id, noteData).subscribe({
+          next: (response) => {
+            this.toastrService.success('Note updated successfully!');
+            this.dialogRef.close(response);
+          },
+          error: (error: HttpErrorResponse) => {
+            this.toastrService.error('Failed to update note!');
+          },
+        });
+      }
     }
   }
 }

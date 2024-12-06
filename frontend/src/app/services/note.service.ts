@@ -26,7 +26,11 @@ export class NoteService {
     return this.http.delete(`${this.apiUrl}/${noteId}`);
   }
 
-  // addNewNote(): Observable<any> {
-  //   return this.http.post<Note[]>(this.apiUrl, { params: queryParams });
-  // }
+  createNote(note: Note): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}`, note);
+  }
+
+  updateNote(noteId: string, note: Note): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${noteId}`, note);
+  }
 }

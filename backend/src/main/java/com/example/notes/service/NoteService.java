@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,6 +20,17 @@ public class NoteService {
 
     public Note createNote(Note note) {
         return noteRepository.save(note);
+    }
+
+    public void updateNote(String id, Note updatedNote) {
+        Optional<Note> note = noteRepository.findById(id);
+        if(note.isPresent()) {
+            Note presentNote = note.get();
+            presentNote.setContent(updatedNote.getContent());
+            presentNote.setTitle(updatedNote.getTitle());
+            presentNote.setUpdatedAt(Instant.now());
+            noteRepository.save(presentNote);
+        }
     }
 
     public Page<Note> getAllNotes(Pageable paging) {
