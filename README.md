@@ -10,3 +10,8 @@ Running instructions:
 6) Open the localhost:4200 in your browser
 7) Login => email: user@example.com, password: user123
 8) Use the app!
+
+- Java version: 17
+- Angular version: 17.3.12
+- Angular CLI version: 17.3.11
+- MongoDB version: 7.0.12
